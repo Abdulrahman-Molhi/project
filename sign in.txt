@@ -1,0 +1,26 @@
+<?php  
+session_start();
+include('connection.php');
+include('functions.php');
+
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+    //something is posted u can check what
+    $email=$_POST["email"];
+    $password=strval($_POST["password"]);
+    $query="SELECT * FROM  project.abdulrahman  where email='$email' limit 1";
+    $result=mysqli_query($con,$query);
+    if($result){
+     if($result && mysqli_num_rows($result) > 0)
+        {
+           $user_data = mysqli_fetch_assoc($result);
+           if($user_data['password'] === $password){
+            $_SESSION['id'] = $user_data['id'];
+            header("location: index.php");
+            
+           }
+        }
+        else{ echo '<script>alert("Welcome to Geeks for Geeks")</script>';}
+    }
+    mysqli_close($con);
+}
+?>

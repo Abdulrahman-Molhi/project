@@ -1,0 +1,59 @@
+<?php
+session_start();
+
+include('connection.php');
+include('functions.php');
+//'<script>alert("Welcome to Geeks for Geeks")</script>'
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+    //something is posted u can check what
+    $user_name=$_POST["username"];
+    $password=strval($_POST["password"]);
+    $cpassword=strval($_POST["cpassword"]);
+    $email=$_POST["email"]; 
+ 
+
+    
+
+   //password check
+   $uppercase = preg_match('@[A-Z]@',$password);
+   $lowercase = preg_match('@[a-z]@',$password);
+   $number=preg_match('@[0-9]@',$password);
+    
+   if(!empty($user_name) && !empty($password) && !empty($cpassword) && !empty($email)){
+    if(!(ctype_alpha($user_name))){
+        echo "<script>alert('name should be characters only')</script>";
+    }
+    elseif( !$uppercase || !$lowercase || !$number || strlen($password) < 9){
+
+    echo "<script>alert('password should be 8 characters in length and include lowercase uppercase and numbers')</script>";
+   }
+   elseif( $password != $cpassword){
+
+    echo "<script>alert('passwords are not the same')</script>";
+   }
+    
+   elseif(!(filter_var($email ,FILTER_VALIDATE_EMAIL))){
+  echo  "<script>alert('your email is invalid')</script>";
+   }
+   else{
+    $sql="INSERT INTO project.abdulrahman (user_name,password,cpassword,email)
+    values('$user_name','$password','$cpassword','$email')";    
+    if(mysqli_query($con,$sql)){
+        echo "<script> confirm('your account is created')</script>";
+        header("location: sign in.php");
+        
+    }
+    else
+        echo "<script>alert('error existed....sorry!')</script>";
+   }
+
+
+}
+else {
+    echo "<script>alert('null error')</script>";
+    
+   }
+   mysqli_close($con);
+}
+
+?>

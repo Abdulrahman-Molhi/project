@@ -1,0 +1,87 @@
+
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'poppins',sans-serif;
+}
+body{
+background-color: rgb(202, 200, 220);
+}
+/*scroll bar*/
+::-webkit-scrollbar{
+    width: 12px;
+
+}
+::-webkit-scrollbar-thumb{
+    background:rgb(255, 184, 53) ;
+    border-radius: 6px;
+}
+/*header*/
+header{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    padding: 7px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: .5s;
+    z-index:1000;
+}
+header.sticky{
+    background: rgb(6, 20, 46);
+    box-shadow: 0 5px 10px rgba(0, 0, 0,1);
+}
+header .logo{
+    position: relative;
+    color: rgb(255, 184, 53);
+    text-decoration: none;
+    font-size: 2em;
+    font-weight: 700;
+}
+header .nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+header ul li{
+    list-style: none;
+    margin: 10px 10px;
+
+
+}
+header ul li a{    
+color: white;
+text-decoration: none;
+padding: 10px 20px;
+border-radius: 5px;
+
+}
+header ul li a:hover{
+background: rgb(235, 198, 30);
+color:black;
+box-shadow: 0 0 10px  rgb(235, 198, 30);
+}
+header .action .search{
+padding: 5px;
+margin: 5px;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: white;
+border-radius: 7px;
+}
+header .action .search i{
+    font-size:1.4em;
+    margin: 5px;
+    color:black;
+}
+header .action .search input{
+    outline: none;
+    border: none;
+    font-size: 1em;
+    color: black;
+}
